@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\ParentChild;
 use App\User;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -16,6 +18,7 @@ class AuthController extends Controller
             'name' => 'required|max:55',
             'email' => 'email|required|unique:users',
             'password' => 'required|confirmed'
+
         ]);
 
         $validatedData['password'] = bcrypt($request->password);
@@ -30,17 +33,31 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $loginData = $request->validate([
+        $request->validate([
             'email' => 'email|required',
             'password' => 'required'
         ]);
 
-        if(!auth()->attempt($loginData)){
+        if(!Auth::guard('web')->attempt(['email' => request('email'), 'password' => request('password')])) {
             return response(['message'=>'Email veya şifre yanlış.']);
         }
-        $accesToken = auth()->user()->createToken('authToken')->accessToken;
-        return response(['user'=>auth()->user(),'access_token'=>$accesToken]);
+        $accesToken = Auth::guard('web')->user()->createToken('authToken')->accessToken;
+        return response(['user'=>Auth::guard('web')->user(),'access_token'=>$accesToken]);
+    }
 
+    public function createHasta(Request $request){
+
+        $validatedData = $request->validate([
+            'name' => 'required|max:55',
+            'email' => 'email|required|unique:users',
+            'password' => 'required|confirmed',
+            'user_type'=> 'required'
+        ]);
+        $validatedData['password'] = bcrypt($request->password);
+        $user = User::create($validatedData);
+        $accessToken = $user->createToken('authToken')->accessToken;
+        ParentChild::create(['parent_id'=>$request->user()->id,'child_id'=>$user->id]);
+        return response()->json('Başarılı');
     }
 
     public function getir(Request $request){
