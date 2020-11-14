@@ -16,6 +16,7 @@ class CreateUserSemptomTable extends Migration
         Schema::create('user_semptom', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('semptom_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('semptom_derece_id');
             $table->unsignedBigInteger('semptom_periyod_id');
             $table->date('semptom_date');

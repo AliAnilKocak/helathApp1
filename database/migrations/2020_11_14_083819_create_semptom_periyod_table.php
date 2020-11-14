@@ -15,6 +15,7 @@ class CreateSemptomPeriyodTable extends Migration
     {
         Schema::create('semptom_periyod', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
