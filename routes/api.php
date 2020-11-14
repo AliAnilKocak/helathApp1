@@ -23,5 +23,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('create_hasta', 'Api\AuthController@createHasta');
 
+    Route::post('semptomlar', 'SemptomController@getAll');
+    Route::post('semptom_derece', 'SemptomDereceController@getAll');
+    Route::post('semptom_periyod', 'SemptomPeriyodController@getAll');
+
 
 });
