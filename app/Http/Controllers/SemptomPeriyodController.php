@@ -9,6 +9,6 @@ class SemptomPeriyodController extends Controller
 {
     public function getAll()
     {
-        return response(SemptomPeriyod::all());
+        return response(['data'=>SemptomPeriyod::all()]);
     }
 }

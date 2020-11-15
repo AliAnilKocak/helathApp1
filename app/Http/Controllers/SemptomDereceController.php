@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class SemptomDereceController extends Controller
 {
     public function getAll(){
-        return response(SemptomDerece::all());
+        return response(['data'=>SemptomDerece::all()]);
     }
 }
