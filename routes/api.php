@@ -26,6 +26,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('semptomlar', 'SemptomController@getAll');
     Route::post('semptom_derece', 'SemptomDereceController@getAll');
     Route::post('semptom_periyod', 'SemptomPeriyodController@getAll');
+    Route::post('oneri', 'OneriController@getById');
+
+    Route::post('savesemptom', 'UserSemptomController@save');
 
 
 });

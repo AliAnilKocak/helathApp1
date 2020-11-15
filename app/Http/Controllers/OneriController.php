@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class OneriController extends Controller
 {
-    public function getAll(){
-        return response(Oneri::all());
+    public function getById(Request $request){
+        return response(['data'=>Oneri::where('semptom_id', $request->semptom_id)->get()]);
     }
 
 }

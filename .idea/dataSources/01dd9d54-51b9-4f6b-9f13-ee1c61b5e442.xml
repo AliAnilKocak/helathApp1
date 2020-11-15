@@ -1496,62 +1496,57 @@
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="433" parent="346" name="semptom_date">
+    <column id="433" parent="346" name="created_at">
       <Position>6</Position>
-      <DataType>date|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>timestamp|0s</DataType>
     </column>
-    <column id="434" parent="346" name="created_at">
+    <column id="434" parent="346" name="updated_at">
       <Position>7</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <column id="435" parent="346" name="updated_at">
-      <Position>8</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <key id="436" parent="346" name="PRIMARY">
+    <key id="435" parent="346" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="437" parent="347" name="id">
+    <column id="436" parent="347" name="id">
       <Position>1</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="438" parent="347" name="name">
+    <column id="437" parent="347" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="439" parent="347" name="email">
+    <column id="438" parent="347" name="email">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="440" parent="347" name="email_verified_at">
+    <column id="439" parent="347" name="email_verified_at">
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <column id="441" parent="347" name="password">
+    <column id="440" parent="347" name="password">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="442" parent="347" name="remember_token">
+    <column id="441" parent="347" name="remember_token">
       <Position>6</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="443" parent="347" name="created_at">
+    <column id="442" parent="347" name="created_at">
       <Position>7</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <column id="444" parent="347" name="updated_at">
+    <column id="443" parent="347" name="updated_at">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <column id="445" parent="347" name="user_type">
+    <column id="444" parent="347" name="user_type">
       <Position>9</Position>
       <Comment>0- uzman hekimin&#xd;
 1- Hemşire&#xd;
@@ -1560,17 +1555,17 @@
       <NotNull>1</NotNull>
       <DefaultExpression>2</DefaultExpression>
     </column>
-    <index id="446" parent="347" name="users_email_unique">
+    <index id="445" parent="347" name="users_email_unique">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="447" parent="347" name="PRIMARY">
+    <key id="446" parent="347" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="448" parent="347" name="users_email_unique">
+    <key id="447" parent="347" name="users_email_unique">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>users_email_unique</UnderlyingIndexName>
     </key>

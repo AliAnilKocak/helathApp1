@@ -10,4 +10,9 @@ class SemptomController extends Controller
     public function getAll(){
         return response(['data'=>Semptom::all()]);
     }
+
+
+
+
+
 }

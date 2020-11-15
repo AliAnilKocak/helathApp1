@@ -19,7 +19,6 @@ class CreateUserSemptomTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('semptom_derece_id');
             $table->unsignedBigInteger('semptom_periyod_id');
-            $table->date('semptom_date');
             $table->timestamps();
         });
     }
