@@ -23,7 +23,7 @@ class AuthController extends Controller
         $validatedData['password'] = bcrypt($request->password);
         $user = User::create($validatedData);
         $accessToken = $user->createToken('authToken')->accessToken;
-        return response(['user'=>$user,'access_token'=>$accessToken]);
+        return response(['user' => $user, 'access_token' => $accessToken]);
     }
 
 
@@ -34,27 +34,29 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if(!Auth::guard('web')->attempt(['email' => request('email'), 'password' => request('password')])) {
-            return response(['message'=>'Email veya şifre yanlış.']);
+        if (!Auth::guard('web')->attempt(['email' => request('email'), 'password' => request('password')])) {
+            return response(['message' => 'Email veya şifre yanlış.']);
         }
         $accesToken = Auth::guard('web')->user()->createToken('authToken')->accessToken;
-        return response(['user'=>Auth::guard('web')->user(),'access_token'=>$accesToken]);
+        return response(['user' => Auth::guard('web')->user(), 'access_token' => $accesToken]);
     }
 
-    public function createHasta(Request $request){
+    public function createHasta(Request $request)
+    {
 
         $validatedData = $request->validate([
             'name' => 'required|max:55',
             'email' => 'email|required|unique:users',
             'password' => 'required|confirmed',
-            'user_type'=> 'required'
+            'user_type' => 'required'
         ]);
         $validatedData['password'] = bcrypt($request->password);
         $user = User::create($validatedData);
-        return response()->json(['status'=>true],200);
+        return response()->json(['status' => true], 200);
     }
 
-    public function getir(Request $request){
-        return Response(['data'=>$request->user()]);
+    public function getir(Request $request)
+    {
+        return Response(['data' => $request->user()]);
     }
 }
