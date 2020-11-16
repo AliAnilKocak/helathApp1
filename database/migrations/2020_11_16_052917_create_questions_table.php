@@ -15,8 +15,9 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string("question_text");
-            $table->string("question_audio_url");
+            $table->string("question_text")->nullable();
+            $table->string("question_audio_url")->nullable();
+            $table->unsignedBigInteger("user_id");
             $table->integer("status"); // 0 hemşireler görecek 1 uzman doktorlar görecek
             $table->timestamps();
         });

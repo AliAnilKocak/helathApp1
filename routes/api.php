@@ -30,5 +30,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('savesemptom', 'UserSemptomController@save');
 
+    Route::post('savequestion', 'QuestionController@create');
+    Route::post('questions', 'QuestionController@index');
+
 
 });
