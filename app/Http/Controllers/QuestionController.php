@@ -16,6 +16,7 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
+
         return  response(['data'=>DB::table('questions')
             ->select('*')
             ->leftJoin('answers', 'answers.question_id', '=', 'questions.id')
