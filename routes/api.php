@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('savequestion', 'QuestionController@create');
     Route::post('questions', 'QuestionController@index');
+    Route::post('questionbyid', 'QuestionController@questionbyid');
 
 
 });

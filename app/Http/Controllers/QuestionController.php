@@ -74,6 +74,18 @@ class QuestionController extends Controller
         //
     }
 
+
+ public function questionbyid(Request $request)
+    {
+        return  response(['data'=>DB::table('questions')
+            ->select('questions.id as id', 'questions.question_text', 'questions.question_audio_url', 'questions.user_id', 'questions.status'
+                ,'questions.created_at', 'questions.updated_at','questions.status',
+                'answers.answer_text', 'answers.answer_audio_url', 'answers.question_id')
+            ->leftJoin('answers', 'answers.question_id', '=', 'questions.id')
+            ->where(['questions.user_id'=>$request->user()->id,'questions.id'=>$request->question_id])
+            ->first()]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
