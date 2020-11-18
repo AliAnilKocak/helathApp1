@@ -35,4 +35,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('questionbyid', 'QuestionController@questionbyid');
 
 
+    Route::post('savetartisma', 'TartismaController@create');
+    Route::post('tartismas', 'TartismaController@index');
+
+
 });
