@@ -38,5 +38,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('savetartisma', 'TartismaController@create');
     Route::post('tartismas', 'TartismaController@index');
 
+    Route::post('hikayes', 'HikayeController@index');
+
 
 });
