@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Hikaye extends Model
+class ViewCountVideo extends Model
 {
-    protected $table = "hikaye";
+    protected $table = "view_count_videos";
     public $timestamps = true;
     protected $guarded = [];
 }
