@@ -40,5 +40,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('hikayes', 'HikayeController@index');
 
+    Route::post('saveviewcount', 'ViewCountVideoController@create');
+
+
 
 });
