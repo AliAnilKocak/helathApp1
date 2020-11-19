@@ -47,6 +47,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('saveviewcount', 'ViewCountVideoController@create');
 
+    Route::post('users', 'UserController@index');
+
 
 
 });
