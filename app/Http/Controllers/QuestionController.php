@@ -26,6 +26,18 @@ class QuestionController extends Controller
             ->get()]);
     }
 
+    public function all(Request $request)
+    {
+
+        return  response(['data'=>DB::table('questions')
+            ->select('questions.id as id', 'questions.question_text', 'questions.question_audio_url', 'questions.user_id', 'questions.status'
+                ,'questions.created_at', 'questions.updated_at','questions.status',
+                'answers.answer_text', 'answers.answer_audio_url', 'answers.question_id','users.name','users.id as user_id')
+            ->leftJoin('answers', 'answers.question_id', '=', 'questions.id')
+            ->leftJoin('users', 'users.id', '=', 'questions.user_id')
+            ->get()]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
