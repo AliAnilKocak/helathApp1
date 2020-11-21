@@ -1,5 +1,6 @@
 <?php
 
+use App\KanTahlil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,18 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('saveviewcount', 'ViewCountVideoController@create');
 
     Route::post('users', 'UserController@index');
+
+    Route::middleware('auth:api')->post('/image_upload', function (Request $request) {
+
+        $request->validate([
+            'file' => 'required|mimes:jpg,jpeg,png|max:2048',
+        ]);
+        $fileName = time() . '.' . $request->file->extension();
+        $request->file->move(public_path('uploads'), $fileName);
+        KanTahlil::create(['image_url'=>$fileName,'user_id'=>$request->user()->id]);
+        return response()->json(['success' => true], 200);
+    });
+
 
 
 
