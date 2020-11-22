@@ -12,16 +12,9 @@ Route::middleware('auth:api')->post('/user', function (Request $request) {
 Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
 
-
 Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('authtest', 'Api\AuthController@getir');
-
-//    Route::group(['prefix'=>'parent_child'], function(){
-//        Route::get('','ParentChildController@index');
-//        Route::post('create','ParentChildController@create');
-//
-//    });
 
     Route::post('create_hasta', 'Api\AuthController@createHasta');
 
@@ -36,7 +29,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('questions', 'QuestionController@index');
     Route::post('questionsall', 'QuestionController@all');
     Route::post('questionbyid', 'QuestionController@questionbyid');
-
 
     Route::post('savetartisma', 'TartismaController@create');
     Route::post('tartismas', 'TartismaController@index');
@@ -57,7 +49,6 @@ Route::group(['middleware' => 'auth:api'], function () {
         KanTahlil::create(['image_url' => $fileName, 'user_id' => $request->user()->id]);
         return response()->json(['success' => true], 200);
     });
-
 
     Route::middleware('auth:api')->post('/audio_upload_question', function (Request $request) {
 
