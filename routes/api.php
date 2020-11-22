@@ -1,20 +1,16 @@
 <?php
 
 use App\KanTahlil;
+use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->post('/user', function (Request $request) {
-    return response(['data'=>$request->user()]);
+    return response(['data' => $request->user()]);
 });
 
 Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
-
-
-
-
-
 
 
 Route::group(['middleware' => 'auth:api'], function () {
@@ -58,11 +54,22 @@ Route::group(['middleware' => 'auth:api'], function () {
         ]);
         $fileName = time() . '.' . $request->file->extension();
         $request->file->move(public_path('uploads'), $fileName);
-        KanTahlil::create(['image_url'=>$fileName,'user_id'=>$request->user()->id]);
+        KanTahlil::create(['image_url' => $fileName, 'user_id' => $request->user()->id]);
         return response()->json(['success' => true], 200);
     });
 
 
+    Route::middleware('auth:api')->post('/audio_upload_question', function (Request $request) {
+
+        $request->validate([
+            'file' => 'required',
+        ]);
+
+        $fileName = time() . '.' . $request->file->extension();
+        $request->file->move(public_path('uploads'), $fileName);
+        Question::create(['question_audio_url' => $fileName, 'user_id' => $request->user()->id, 'question_text' => "",'status'=>0]);
+        return response()->json(['success' => true], 200);
+    });
 
 
 });
