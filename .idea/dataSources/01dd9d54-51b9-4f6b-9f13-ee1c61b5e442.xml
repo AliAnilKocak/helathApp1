@@ -1677,7 +1677,7 @@
     </column>
     <column id="473" parent="351" name="created_at">
       <Position>6</Position>
-      <DataType>timestamp|0s</DataType>
+      <DataType>date|0s</DataType>
     </column>
     <column id="474" parent="351" name="updated_at">
       <Position>7</Position>
