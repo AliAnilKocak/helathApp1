@@ -13,9 +13,14 @@ class ViewCountVideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return response(['data'=>DB::table('view_count_videos')
+        ->select('view_count_videos.count as count','users.name as name','hikaye.title as hikayename')
+        ->join('users', 'view_count_videos.user_id', '=', 'users.id')
+        ->join('hikaye', 'view_count_videos.hikaye_id', '=', 'hikaye.id')
+        ->where('view_count_videos.user_id', $request->user_id)
+        ->get()]);
     }
 
     /**

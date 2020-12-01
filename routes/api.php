@@ -35,10 +35,12 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 
     Route::post('usersemptoms', 'UserSemptomController@index');
+    Route::post('usersemptomsbyuserid', 'UserSemptomController@semptomsbyuserid');
 
     Route::post('hikayes', 'HikayeController@index');
 
     Route::post('saveviewcount', 'ViewCountVideoController@create');
+    Route::post('viewcount', 'ViewCountVideoController@index');
 
     Route::post('users', 'UserController@index');
 
