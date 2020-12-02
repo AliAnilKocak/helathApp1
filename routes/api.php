@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('users', 'UserController@index');
 
+    Route::post('kantahlils', 'KanTahlilController@index');
+
     Route::middleware('auth:api')->post('/image_upload', function (Request $request) {
 
         $request->validate([
