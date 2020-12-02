@@ -18,7 +18,7 @@ class KanTahlilController extends Controller
         return response(['data'=>DB::table('kan_tahlils')
         ->select('kan_tahlils.image_url as imageUrl','kan_tahlils.id as id','users.name as name','kan_tahlils.created_at')
         ->join('users', 'kan_tahlils.user_id', '=', 'users.id')
-       ->where('kan_tahlils.user_id', $request->user_id)
+       ->where('kan_tahlils.user_id', $request->user_id)->orderByDesc('kan_tahlils.created_at')
         ->get()]);
     }
 
