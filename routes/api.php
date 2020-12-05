@@ -1,5 +1,6 @@
 <?php
 
+use App\Answer;
 use App\KanTahlil;
 use App\Question;
 use Illuminate\Http\Request;
@@ -26,9 +27,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('savesemptom', 'UserSemptomController@save');
 
     Route::post('savequestion', 'QuestionController@create');
+    Route::post('saveanswer', 'AnswerController@create');
     Route::post('questions', 'QuestionController@index');
     Route::post('questionsall', 'QuestionController@all');
     Route::post('questionbyid', 'QuestionController@questionbyid');
+    Route::post('questionbyidadmin', 'QuestionController@questionbyidadmin');
 
     Route::post('savetartisma', 'TartismaController@create');
     Route::post('tartismas', 'TartismaController@index');
@@ -65,9 +68,27 @@ Route::group(['middleware' => 'auth:api'], function () {
 
         $fileName = time() . '.' . $request->file->extension();
         $request->file->move(public_path('uploads'), $fileName);
-        Question::create(['question_audio_url' => $fileName, 'user_id' => $request->user()->id, 'question_text' => "",'status'=>0]);
+        Question::create(['question_audio_url' => $fileName, 'user_id' => $request->user()->id, 'question_text' => "", 'status' => 0]);
         return response()->json(['success' => true], 200);
     });
 
+    Route::middleware('auth:api')->post('/audio_upload_question_admin', function (Request $request) {
 
+        $request->validate([
+            'file' => 'required',
+        ]);
+
+        $fileName = time() . '.' . $request->file->extension();
+        $request->file->move(public_path('uploads'), $fileName);
+        Answer::create(['answer_audio_url' => $fileName, 'question_id' => $request->question_id, 'answer_text' => ""]);
+        return response()->json(['success' => true], 200);
+    });
+
+    Route::middleware('auth:api')->post('/hekime_yonlendir', function (Request $request) {
+
+        $Q1 = Question::find($request->question_id);
+        $Q1->status = 1;
+        $Q1->save();
+        return response()->json(['success' => true], 200);
+    });
 });

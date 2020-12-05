@@ -22,9 +22,13 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return response(['data'=>Answer::create([
+            'answer_text'=>$request->answer_text,
+            'answer_audio_url'=>$request->answer_audio_url,
+            'question_id' =>$request->question_id,
+        ])]);
     }
 
     /**
