@@ -16,7 +16,7 @@ class TartismaController extends Controller
     public function index(Request $request)
     {
        return response(['data'=>DB::table('tartisma')
-            ->select('tartisma.id as id', 'tartisma.message','users.name','tartisma.created_at')
+            ->select('tartisma.id as id', 'tartisma.message','users.name','tartisma.created_at','users.user_type')
             ->join('users', 'tartisma.user_id', '=', 'users.id')
             //->where('tartisma.user_id', $request->user()->id)
             ->get()]);
